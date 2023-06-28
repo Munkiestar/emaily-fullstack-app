@@ -2,5 +2,6 @@
 
 .env
 server/node_modules
+config/keys.js
 server/config/keys.js
 node_modules
