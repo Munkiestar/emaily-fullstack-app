@@ -1,1 +1,6 @@
 .idea
+
+.env
+server/node_modules
+server/config/keys.js
+node_modules
