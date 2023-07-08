@@ -1,8 +1,12 @@
 const express = require("express");
-require("./services/passport");
 const { mongoURI } = require("./config/keys");
 const mongoose = require("mongoose");
 
+// executing files
+require("./services/passport");
+require("./models/User");
+
+// connect to db
 mongoose.connect(mongoURI);
 
 const app = express();
