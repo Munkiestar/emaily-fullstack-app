@@ -4,7 +4,18 @@ const { googleClientID, googleClientSecret } = require("../config/keys");
 
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
-console.log("USER: ", User);
+
+// serialize & deserialize - communication between browser (user) and Mongo DB
+// user id from mongo db
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// search user by id in DB
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id);
+  await done(null, user);
+});
 
 passport.use(
   new GoogleStrategy(
@@ -14,11 +25,19 @@ passport.use(
       callbackURL: "/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
-      const user = await User.findOne({ googleId: profile.id });
-      console.log("user: ", user);
       // check if user exists with given profile ID
-      // save new user to db
-      if (!user) new User({ googleId: profile.id }).save();
+      const existingUser = await User.findOne({ googleId: profile.id });
+      console.log("existingUser: ", existingUser);
+      if (!existingUser) {
+        // save new user to db
+        // create new instance
+        const newUser = await new User({ googleId: profile.id }).save();
+        await done(null, newUser);
+      } else {
+        // tell passport to continue
+        // first arg: err -- sec arg: user record
+        await done(null, existingUser);
+      }
     }
   )
 );
