@@ -3,8 +3,8 @@ const { mongoURI } = require("./config/keys");
 const mongoose = require("mongoose");
 
 // executing files
-require("./services/passport");
 require("./models/User");
+require("./services/passport");
 
 // connect to db
 mongoose.connect(mongoURI);
