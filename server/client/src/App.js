@@ -1,9 +1,9 @@
-import "./App.css";
+import "./app.css";
 
 function App() {
   return (
-    <div className="App">
-      <h1>hello</h1>
+    <div className="app">
+      <h1>refactor react</h1>
       <a href="/auth/google">Sign in</a>
     </div>
   );

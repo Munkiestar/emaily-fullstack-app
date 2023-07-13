@@ -32,12 +32,11 @@ passport.use(
         // save new user to db
         // create new instance
         const newUser = await new User({ googleId: profile.id }).save();
-        await done(null, newUser);
-      } else {
-        // tell passport to continue
-        // first arg: err -- sec arg: user record
-        await done(null, existingUser);
+        return await done(null, newUser);
       }
+      // tell passport to continue
+      // first arg: err -- sec arg: user record
+      await done(null, existingUser);
     }
   )
 );
