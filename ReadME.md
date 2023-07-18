@@ -7,3 +7,4 @@ Hosting app
 Dependencies
 
 - Passport google auth (passport-google-oauth20)
+- MaterializeCss [Link](https://materializecss.com/getting-started.html)
