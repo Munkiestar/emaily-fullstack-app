@@ -19,7 +19,7 @@ module.exports = (app) => {
   // log out
   app.get("/api/logout", (req, res) => {
     req.logout();
-    res.send(req.user);
+    res.redirect("/");
   });
 
   // show user data
