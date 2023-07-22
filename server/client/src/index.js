@@ -18,7 +18,3 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-
-console.log("strpie key: ", process.env.REACT_APP_STRIPE_KEY);
-console.log(" process.env: ", process.env);
-console.log("strpie key: ", process.env.NODE_ENV);
