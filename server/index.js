@@ -3,6 +3,7 @@ const { mongoURI, cookieKey } = require("./config/keys");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+const bodyParser = require("body-parser");
 
 // executing files
 require("./models/User");
@@ -14,6 +15,8 @@ const PORT = 5000;
 mongoose.connect(mongoURI);
 
 const app = express();
+
+app.use(bodyParser.json());
 app.use(
   cookieSession({
     // 30 days
@@ -28,6 +31,7 @@ app.use(passport.session());
 
 //  route handlers
 require("./routes/authRoutes")(app);
+require("./routes/billingRoutes")(app);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
