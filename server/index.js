@@ -33,6 +33,7 @@ app.use(passport.session());
 //  route handlers
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
