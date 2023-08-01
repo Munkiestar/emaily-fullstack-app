@@ -27,7 +27,7 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       // check if user exists with given profile ID
       const existingUser = await User.findOne({ googleId: profile.id });
-      console.log("existingUser: ", existingUser);
+      // console.log("existingUser: ", existingUser);
       if (!existingUser) {
         // save new user to db
         // create new instance

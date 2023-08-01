@@ -2,6 +2,7 @@ const requireLogin = require("../middlewares/requireLogin");
 const checkCredit = require("../middlewares/checkCredit");
 const mongoose = require("mongoose");
 
+const Mailer = require("../services/Mailer");
 const Survey = mongoose.model("surveys");
 
 module.exports = (app) => {
@@ -21,5 +22,10 @@ module.exports = (app) => {
       _user: id,
       dateSent: Date.now(),
     });
+
+    console.log("survey-route: ", survey);
+
+    // send email
+    Mailer(survey, content);
   });
 };
